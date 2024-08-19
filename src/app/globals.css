@@ -5,3 +5,6 @@
 body {
   @apply bg-black text-white;
 }
+*{
+  letter-spacing: .06rem;
+}

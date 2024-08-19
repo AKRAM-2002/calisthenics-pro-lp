@@ -19,7 +19,6 @@ export default function Features() {
     if (scrollContainer) {
       const totalWidth = scrollContainer.scrollWidth / 2;
 
-      // Scroll loop logic
       const scrollAnimation = () => {
         scrollContainer.scrollLeft += 1;
         if (scrollContainer.scrollLeft >= totalWidth) {
@@ -27,7 +26,7 @@ export default function Features() {
         }
       };
 
-      const scrollInterval = setInterval(scrollAnimation, 10); // Adjust speed here
+      const scrollInterval = setInterval(scrollAnimation, 10);
       return () => clearInterval(scrollInterval);
     }
   }, []);
@@ -44,25 +43,21 @@ export default function Features() {
       </div>
       <div className="scroller overflow-hidden" ref={scrollRef}>
         <div className="scroller__inner">
-          {features.map((feature, index) => (
+          {features.concat(features).map((feature, index) => (
             <motion.div
               key={index}
-              className="min-w-[250px] bg-gray-900 p-6 rounded-lg"
-              whileHover={{ scale: 1.1 }}
+              className="min-w-[350px] bg-[#0D0D0D] p-6 rounded-lg"
+              whileHover={{ 
+                scale: 1.02,
+                backgroundColor: '#097FD9',
+              }}
             >
-              <feature.icon className="text-blue-500 text-4xl mb-4" />
-              <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-              <p className="text-gray-400">{feature.description}</p>
-            </motion.div>
-          ))}
-          {/* Duplicate the items */}
-          {features.map((feature, index) => (
-            <motion.div
-              key={`clone-${index}`}
-              className="min-w-[250px] bg-gray-900 p-6 rounded-lg"
-              whileHover={{ scale: 1.1 }}
-            >
-              <feature.icon className="text-blue-500 text-4xl mb-4" />
+              <feature.icon 
+                className="text-4xl mb-4 transition-colors duration-300"
+                style={{ 
+                  color: '#097FD9',
+                }}
+              />
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-400">{feature.description}</p>
             </motion.div>
