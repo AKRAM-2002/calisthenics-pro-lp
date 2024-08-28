@@ -8,6 +8,10 @@
 import Features from "./components/Features";
 import Hero from "./components/Hero";
 import Layout from "./components/Layout";
+import NewsletterSection from "./components/NewsletterSection";
+import PricingSection from "./components/PricingSection";
+import ProductShowcase from "./components/ProductShowcase";
+import TestimonialsSection from "./components/Testimonials";
 import TransformationSection from "./components/TransformSection";
 
 export default function Home() {
@@ -15,10 +19,14 @@ export default function Home() {
     <Layout>
       <Hero/>
       <Features/>
-      <TransformationSection/>
+      <TransformationSection />
+      <ProductShowcase />
+      <PricingSection />
+      <TestimonialsSection />
+      <NewsletterSection />
       {/* 
       
-      <Pricing />
+      
       <Testimonials />
       <Subscribe /> */}
     </Layout>

@@ -13,7 +13,7 @@ export default function Hero() {
             <button className="px-8 py-4 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition duration-300 shadow-lg font-bold">
               Start Your Calisthenics Journey
             </button>
-                <div className="flex flex-col ml-4 items-center">
+              <div className="flex flex-col ml-4 items-center">
                 <div className="flex -space-x-4">
                     <div className="w-10 h-10 rounded-full border-2 overflow-hidden">
                     <Image src="/assets/Ellipse 1.png" width={40} height={40} alt="User 1" />

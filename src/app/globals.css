@@ -8,3 +8,23 @@ body {
 *{
   letter-spacing: .06rem;
 }
+
+.animatedButton {
+  position: relative;
+  animation: pulse 1.5s infinite;
+  transition: none; /* Disable hover effects */
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); /* Adjust the color as needed */
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+

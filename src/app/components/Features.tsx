@@ -1,7 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { MdFitnessCenter, MdGroup, MdSmartToy, MdRestaurant } from 'react-icons/md';
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import './Features.css';
 
 const features = [
@@ -13,6 +13,7 @@ const features = [
 
 export default function Features() {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
@@ -47,16 +48,17 @@ export default function Features() {
             <motion.div
               key={index}
               className="min-w-[350px] bg-[#0D0D0D] p-6 rounded-lg"
-              whileHover={{ 
+              whileHover={{
                 scale: 1.02,
                 backgroundColor: '#097FD9',
               }}
+              onHoverStart={() => setHoveredIndex(index)}
+              onHoverEnd={() => setHoveredIndex(null)}
             >
-              <feature.icon 
-                className="text-4xl mb-4 transition-colors duration-300"
-                style={{ 
-                  color: '#097FD9',
-                }}
+              <feature.icon
+                className={`text-4xl mb-4 transition-colors duration-300 ${
+                  hoveredIndex === index ? 'text-white' : 'text-[#097FD9]'
+                }`}
               />
               <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
               <p className="text-gray-400">{feature.description}</p>
