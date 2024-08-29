@@ -4,27 +4,12 @@ import Image from 'next/image';
 import { ChevronRight, ChevronLeft, Star } from 'lucide-react';
 import { TestimonialsCards } from './TestimonialsCards';
 
-const testimonials = [
-  {
-    id: 1,
-    name: 'Jonathan Edward',
-    role: 'Office Worker',
-    content: "Join this fitness member, the best choice that I've. They're very professional and give you suggestion about what food and nutrition that you can eat.",
-    avatar: '/path-to-jonathan-avatar.jpg',
-  },
-  // Add more testimonials here
-];
+
 
 const TestimonialsSection = () => {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+  
 
-  const nextTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
-  };
 
-  const prevTestimonial = () => {
-    setCurrentTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
 
   return (
     <section className="bg-black text-white py-16">

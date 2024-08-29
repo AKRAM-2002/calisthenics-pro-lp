@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 const NewsletterSection = () => {
   const [email, setEmail] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e : any) => {
     e.preventDefault();
     // Handle newsletter subscription here
     console.log('Subscribing email:', email);
