@@ -17,6 +17,7 @@ import TransformationSection from "./components/TransformSection";
 export default function Home() {
   return (
     <Layout>
+      
       <Hero/>
       <Features/>
       <TransformationSection />
