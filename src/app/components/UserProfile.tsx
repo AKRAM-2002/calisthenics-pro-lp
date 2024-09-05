@@ -1,6 +1,6 @@
 'use client';
 
-import { useUser } from "@clerk/nextjs";
+import { SignOutButton, useUser } from "@clerk/nextjs";
 
 export default function UserProfile() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -9,5 +9,8 @@ export default function UserProfile() {
     return null;
   }
 
-  return <div>Hello, {user.firstName}!</div>;
+  return <div className="flex items-end justify-between">
+    <div>Hello, {user.firstName}!</div>
+    <div><SignOutButton/></div>
+  </div>;
 }
