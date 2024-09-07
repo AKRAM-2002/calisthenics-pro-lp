@@ -1,4 +1,4 @@
-"user server";
+"use server";
 
 import User from "@/lib/modals/user.modal";
 import {connect} from "@/lib/db";
