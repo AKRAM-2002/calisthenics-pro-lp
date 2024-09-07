@@ -11,9 +11,9 @@ export const ActivityCalendarComponent = () => {
   }, []);
 
   const data = [
-    { date: '2021-07-01', count: 3 },
-    { date: '2021-07-02', count: 0 },
-    { date: '2021-07-03', count: 1 },
+    { date: '2021-07-01', count: 3, level: 3 },
+    { date: '2021-07-02', count: 0, level: 0 },
+    { date: '2021-07-03', count: 1, level: 1 },
     // Add more activity data here for the calendar
   ];
 
@@ -30,7 +30,7 @@ export const ActivityCalendarComponent = () => {
               more: 'More activity',
             },
           }}
-          color="hsl(205, 70%, 50%)"
+          
           blockSize={15}
           blockMargin={5}
           theme={{

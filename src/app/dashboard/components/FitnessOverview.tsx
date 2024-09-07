@@ -1,7 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 
-const FitnessOverview = ({ userProgress, aiTip, recentActivities }) => {
+
+
+const FitnessOverview = ({ userProgress, aiTip, recentActivities } : any) => {
 
   
   const activities = [
@@ -29,7 +31,7 @@ const FitnessOverview = ({ userProgress, aiTip, recentActivities }) => {
             <div className="bg-white p-6 rounded-xl shadow-md flex-1">
               <h3 className="text-2xl font-semibold mb-4 text-gray-800">Goals</h3>
               <ul className="space-y-3">
-                {userProgress.goals.map((goal, index) => (
+                {userProgress.goals.map((goal: any, index: any) => (
                   <li key={index} className="flex items-center text-gray-700">
                     <svg className="w-6 h-6 mr-3 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -45,7 +47,7 @@ const FitnessOverview = ({ userProgress, aiTip, recentActivities }) => {
           <div>
             <h3 className="text-2xl font-semibold mb-4 text-gray-800">Current Streak:</h3>
             <div className="flex space-x-3">
-              {userProgress.streak.map((status, index) => (
+              {userProgress.streak.map((status:any, index:any) => (
                 <div key={index} className={`w-10 h-14 rounded-md bg-${status}-500 shadow-md`}></div>
               ))}
             </div>
@@ -56,7 +58,7 @@ const FitnessOverview = ({ userProgress, aiTip, recentActivities }) => {
             <div className="bg-white p-6 rounded-xl shadow-md">
               <h3 className="text-2xl font-semibold mb-4 text-gray-800">Achievements</h3>
               <ul className="space-y-2 text-gray-700">
-                {userProgress.achievements.map((achievement, index) => (
+                {userProgress.achievements.map((achievement:any, index:any) => (
                   <li key={index}>🏅 {achievement}</li>
                 ))}
               </ul>
@@ -65,7 +67,7 @@ const FitnessOverview = ({ userProgress, aiTip, recentActivities }) => {
             <div className="bg-white p-6 rounded-xl shadow-md">
               <h3 className="text-2xl font-semibold mb-4 text-gray-800">Track Skills</h3>
               <div className="space-y-3">
-                {userProgress.skills.map((skill, index) => (
+                {userProgress.skills.map((skill:any, index:any) => (
                   <div key={index} className="flex items-center">
                     <span className="w-24 text-gray-700">{skill.name}</span>
                     <div className="flex-1 bg-gray-200 rounded-full h-2.5">
