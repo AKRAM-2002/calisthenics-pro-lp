@@ -14,6 +14,9 @@ interface User {
   weight: number;
   bodyFat: number;
   bmi: number;
+  followers: number;
+  following: number;
+  ranking: number;
 }
 
 const UserProfile: React.FC<{ user: User }> = ({ user }) => {
@@ -42,7 +45,8 @@ const UserProfile: React.FC<{ user: User }> = ({ user }) => {
           <p className="text-gray-600">{email}</p>
         </div>
       </div>
-      
+
+      {/* account details */}
       <div className="grid grid-cols-3 gap-4 bg-blue-500 text-white p-4 rounded-lg">
         <div className="text-center">
           <p className="text-2xl font-bold">{user.weight}</p>
@@ -50,11 +54,27 @@ const UserProfile: React.FC<{ user: User }> = ({ user }) => {
         </div>
         <div className="text-center">
           <p className="text-2xl font-bold">{user.bodyFat}</p>
-          <p>Body Fat (kg)</p>
+          <p>Body Fat (%)</p>
         </div>
         <div className="text-center">
           <p className="text-2xl font-bold">{user.bmi}</p>
           <p>BMI</p>
+        </div>
+      </div>
+
+      {/* Follower, following, and ranking details */}
+      <div className="flex justify-between mt-4 bg-gray-200 p-4 rounded-lg text-black">
+        <div className="text-center">
+          <p className="text-2xl font-bold">{user.followers}</p>
+          <p className='font-bold'>Followers</p>
+        </div>
+        <div className="text-center">
+          <p className="text-2xl font-bold">{user.following}</p>
+          <p className='font-bold'>Following</p>
+        </div>
+        <div className="text-center">
+          <p className="text-2xl">#{user.ranking}</p>
+          <p className='font-bold'>Ranking</p>
         </div>
       </div>
       
