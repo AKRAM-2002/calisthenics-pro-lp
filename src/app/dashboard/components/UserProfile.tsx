@@ -1,16 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-interface EmailAddress {
-  emailAddress: string;
-}
-
-interface User {
-  firstName: string;
-  lastName: string | null;
-  emailAddresses?: EmailAddress[];
-  primaryEmailAddress?: EmailAddress;
-  imageUrl: string;
+interface AdditionalUserData {
   weight: number;
   bodyFat: number;
   bmi: number;
@@ -19,14 +10,20 @@ interface User {
   ranking: number;
 }
 
-const UserProfile: React.FC<{ user: User }> = ({ user }) => {
-  const fullName = `${user.firstName || ''} ${user.lastName || ''}`.trim();
-  const email = user.primaryEmailAddress?.emailAddress || 'No email Provided';
+interface UserProfileProps {
+  firstName: string;
+  email: string;
+  imageUrl: string;
+  additionalData: AdditionalUserData;
+}
 
+const UserProfile: React.FC<UserProfileProps> = ({ firstName, email, imageUrl, additionalData }) => {  
+
+  
   return (
     <div className="bg-gray-100 p-6 rounded-lg shadow-md">
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl text-black font-bold">{fullName}&apos;s Profile</h2>
+        <h2 className="text-2xl text-black font-bold">{firstName}&apos;s Profile</h2>
         <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
           Edit Profile
         </button>
@@ -34,14 +31,14 @@ const UserProfile: React.FC<{ user: User }> = ({ user }) => {
       
       <div className="flex items-center mb-6">
         <Image
-          src={user.imageUrl}
-          alt={fullName}
+          src={imageUrl}
+          alt={firstName}
           width={100}
           height={100}
           className="rounded-full mr-4"
         />
         <div>
-          <h3 className="text-xl font-semibold text-black">{fullName}</h3>
+          <h3 className="text-xl font-semibold text-black">{firstName}</h3>
           <p className="text-gray-600">{email}</p>
         </div>
       </div>
@@ -49,15 +46,15 @@ const UserProfile: React.FC<{ user: User }> = ({ user }) => {
       {/* account details */}
       <div className="grid grid-cols-3 gap-4 bg-blue-500 text-white p-4 rounded-lg">
         <div className="text-center">
-          <p className="text-2xl font-bold">{user.weight}</p>
+          <p className="text-2xl font-bold">{additionalData.weight}</p>
           <p>Weight (kg)</p>
         </div>
         <div className="text-center">
-          <p className="text-2xl font-bold">{user.bodyFat}</p>
+          <p className="text-2xl font-bold">{additionalData.bodyFat}</p>
           <p>Body Fat (%)</p>
         </div>
         <div className="text-center">
-          <p className="text-2xl font-bold">{user.bmi}</p>
+          <p className="text-2xl font-bold">{additionalData.bmi}</p>
           <p>BMI</p>
         </div>
       </div>
@@ -65,19 +62,19 @@ const UserProfile: React.FC<{ user: User }> = ({ user }) => {
       {/* Follower, following, and ranking details */}
       <div className="flex justify-between mt-4 bg-gray-200 p-4 rounded-lg text-black">
         <div className="text-center">
-          <p className="text-2xl font-bold">{user.followers}</p>
+          <p className="text-2xl font-bold">{additionalData.followers}</p>
           <p className='font-bold'>Followers</p>
         </div>
         <div className="text-center">
-          <p className="text-2xl font-bold">{user.following}</p>
+          <p className="text-2xl font-bold">{additionalData.following}</p>
           <p className='font-bold'>Following</p>
         </div>
         <div className="text-center">
-          <p className="text-2xl">#{user.ranking}</p>
+          <p className="text-2xl">#{additionalData.ranking}</p>
           <p className='font-bold'>Ranking</p>
         </div>
       </div>
-      
+
       {/* Placeholder for additional sections */}
       <div className="mt-6">
         <h3 className="text-xl font-semibold mb-2 text-black">Recent Activity</h3>

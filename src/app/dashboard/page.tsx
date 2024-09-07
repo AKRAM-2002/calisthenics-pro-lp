@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import React, { useEffect, useState } from 'react';
 import { useUser } from "@clerk/nextjs";
@@ -11,14 +11,24 @@ import LoadingSpinner from '../components/ui/LoadingSpinner';
 import FitnessOverview from './components/FitnessOverview';
 import WorkoutPlan from './components/WorkoutPlan';
 
+interface AdditionalUserData {
+  weight: number;
+  bodyFat: number;
+  bmi: number;
+  followers: number;
+  following: number;
+  ranking: number;
+}
+
 export default function DashboardPage() {
   const { isLoaded, isSignedIn, user } = useUser();
+  console.log(user)
   const router = useRouter();
   const [selectedSection, setSelectedSection] = useState('Daily Habits');
   const [loading, setLoading] = useState(true);
-  const [userProgress, setUserProgress] = useState(null); // State to hold the user progress data
+  const [userProgress, setUserProgress] = useState(null); // Simulate fetching user progress data
+  const [additionalUserData, setAdditionalUserData] = useState<AdditionalUserData | null>(null);
 
-  // Simulate fetching user progress data
   useEffect(() => {
     if (isLoaded) {
       if (!isSignedIn) {
@@ -26,43 +36,46 @@ export default function DashboardPage() {
         return;
       }
 
-      // Simulate API request to fetch user progress
+      // Simulate fetching additional user data
       setTimeout(() => {
-        const fetchedUserProgress = {
-          overallLevel: 5, // Example level
-          goals: ['Master handstand', 'Increase pull-up reps'],
-          streak: ['green', 'green', 'gray', 'green', 'green'], // Example streak
-          achievements: ['First Muscle-Up', 'First Planche Hold'],
-          skills: [
-            { name: 'Handstand', level: 7 },
-            { name: 'Muscle-Up', level: 5 },
-          ],
+        const fetchedUserData = {
+          weight: 75, // kg
+          bodyFat: 12.5, // %
+          bmi: 22.3,
+          followers: 300,
+          following: 180,
+          ranking: 42,
         };
-
-        setUserProgress(fetchedUserProgress);
-        setLoading(false); // Set loading to false once data is fetched
-      }, 2500); // Simulate a delay
+        setAdditionalUserData(fetchedUserData);
+        setLoading(false);
+      }, 2000);
     }
   }, [isLoaded, isSignedIn, router]);
 
-  // Show loading spinner until the data is loaded
-  if (!isLoaded || loading) {
+  if (!isLoaded || loading || !additionalUserData) {
     return <LoadingSpinner />;
   }
 
   const renderSection = () => {
     switch (selectedSection) {
       case 'Exercise':
-        return <FitnessOverview userProgress={userProgress} />; // Pass userProgress as prop
+        return <FitnessOverview userProgress={userProgress} />;
       case 'Workout Plan':
         return <WorkoutPlan />;
       case 'View Skills':
-        return <div>View Skills Component</div>; // Replace with actual view skills component
+        return <div>View Skills Component</div>;
       case 'Daily Habits':
       default:
         return (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {user && <UserProfile user={user} />}
+            {user && (
+              <UserProfile
+                firstName={user.firstName || 'N/A'}
+                email={user.primaryEmailAddress?.emailAddress || 'No email available'}
+                imageUrl={user.imageUrl || 'defaultImage.jpg'}
+                additionalData={additionalUserData}
+              />
+            )}
             <ActivityCalendarComponent />
           </div>
         );
@@ -77,7 +90,7 @@ export default function DashboardPage() {
         <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
           <div className="container mx-auto px-6 py-8">
             <h1 className="text-3xl font-semibold mb-6 text-black">
-              Welcome to your Dashboard, {user.firstName}!
+              Welcome to your Dashboard, {user?.firstName || 'User'}!
             </h1>
             {renderSection()}
           </div>
