@@ -1,11 +1,12 @@
 {
+  "type": "module",
   "name": "calisthenics-pro-lp",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "nodemon server.js",
     "lint": "next lint"
   },
   "dependencies": {
@@ -13,11 +14,15 @@
     "@tabler/icons-react": "^3.14.0",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
     "framer-motion": "^11.3.28",
     "lucide-react": "^0.436.0",
     "mongodb": "^6.8.1",
     "mongoose": "^8.6.1",
     "next": "14.2.5",
+    "nodemon": "^3.1.4",
     "react": "^18",
     "react-activity-calendar": "^2.5.1",
     "react-day-picker": "^9.0.8",

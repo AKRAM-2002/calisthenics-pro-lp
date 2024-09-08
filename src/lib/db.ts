@@ -23,6 +23,8 @@ if (!cached) {
 export const connect = async () => {
     if (cached.conn) return cached.conn;
 
+    console.log("Connecting to MongoDB...");
+
     cached.promise = cached.promise || 
         mongoose.connect(DB_URL, {  // Use DB_URL here instead of MONGODB_URL
             dbName: 'CALIPRO',
@@ -31,6 +33,8 @@ export const connect = async () => {
         });
 
     cached.conn = await cached.promise;
+
+    console.log("Connected to MongoDB");
         
     return cached.conn;
 }
