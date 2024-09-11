@@ -15,11 +15,12 @@ datasource db {
 
 model User {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  clerkUserId String   @unique
   email       String   @unique
   firstName   String?
   lastName    String?
+
   imageUrl    String?
-  clerkUserId String   @unique
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
