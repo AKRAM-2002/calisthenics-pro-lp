@@ -16,7 +16,8 @@ mongoose.connect(process.env.MONGODB_URL)
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
+
 
 // Real code
 app.post(
@@ -28,8 +29,11 @@ async function (req, res) {
     const payloadString = req.body.toString();
     const svixHeaders = req.headers;
 
-    const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET_KEY);
+    const wh = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
     const evt = wh.verify(payloadString, svixHeaders);
+
+    console.log('Webhook secret:', process.env.CLERK_WEBHOOK_SECRET);
+    console.log('Webhook headers:', svixHeaders);
     const { id, ...attributes } = evt.data;
     // Handle the webhooks
     const eventType = evt.type;

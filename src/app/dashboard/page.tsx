@@ -10,6 +10,7 @@ import { ActivityCalendarComponent } from './components/ActivityCalendar';
 import LoadingSpinner from '../components/ui/LoadingSpinner';
 import FitnessOverview from './components/FitnessOverview';
 import WorkoutPlan from './components/WorkoutPlan';
+import SkillsSection from './components/SkillsSection';
 
 interface AdditionalUserData {
   weight: number;
@@ -20,13 +21,31 @@ interface AdditionalUserData {
   ranking: number;
 }
 
+interface UserProgress {
+  overallLevel: string;
+  goals: string[];
+  streak: string[];
+  achievements: string[];
+  skills: {
+    name: string;
+    level: number;
+  }[];
+}
+
 export default function DashboardPage() {
   const { isLoaded, isSignedIn, user } = useUser();
   console.log(user)
   const router = useRouter();
   const [selectedSection, setSelectedSection] = useState('Daily Habits');
   const [loading, setLoading] = useState(true);
-  const [userProgress, setUserProgress] = useState(null); // Simulate fetching user progress data
+  const [userProgress, setUserProgress] = useState<UserProgress | null>({
+    overallLevel: '',  // Set default values for expected keys
+    goals: [],
+    streak: [],
+    achievements: [],
+    skills: [],
+  });
+ // Simulate fetching user progress data
   const [additionalUserData, setAdditionalUserData] = useState<AdditionalUserData | null>(null);
 
   useEffect(() => {
@@ -35,6 +54,7 @@ export default function DashboardPage() {
         router.push("/");
         return;
       }
+      
 
       // Simulate fetching additional user data
       setTimeout(() => {
@@ -46,7 +66,23 @@ export default function DashboardPage() {
           following: 180,
           ranking: 42,
         };
+
+        const fetchedUserProgress = {
+          overallLevel: '5',  // Example data
+          goals: ['Achieve 50 pull-ups', 'Increase handstand duration'],
+          streak: ['green', 'green', 'gray', 'gray', 'gray', 'green', 'green'],
+          achievements: ['Completed first muscle-up', 'Held 60-second plank'],
+          skills: [
+            { name: 'Pull-ups', level: 7 },
+            { name: 'Handstands', level: 5 },
+          ],
+        };
+
+
         setAdditionalUserData(fetchedUserData);
+        setUserProgress(fetchedUserProgress);
+
+        
         setLoading(false);
       }, 2000);
     }
@@ -63,7 +99,7 @@ export default function DashboardPage() {
       case 'Workout Plan':
         return <WorkoutPlan />;
       case 'View Skills':
-        return <div>View Skills Component</div>;
+        return <SkillsSection/>;
       case 'Daily Habits':
       default:
         return (

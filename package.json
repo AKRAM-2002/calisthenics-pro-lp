@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^5.4.1",
+    "@prisma/client": "^5.19.1",
     "@tabler/icons-react": "^3.14.0",
     "autoprefixer": "^10.4.20",
     "clsx": "^2.1.1",
@@ -23,6 +24,7 @@
     "mongoose": "^8.6.1",
     "next": "14.2.5",
     "nodemon": "^3.1.4",
+    "prisma": "^5.19.1",
     "react": "^18",
     "react-activity-calendar": "^2.5.1",
     "react-day-picker": "^9.0.8",
