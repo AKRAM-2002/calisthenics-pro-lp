@@ -1,6 +1,6 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
-import { clerkClient, WebhookEvent } from '@clerk/nextjs/server'
+import { WebhookEvent } from '@clerk/nextjs/server'
 import { User } from '@prisma/client'
 import { createUser } from '../../../../../lib/users'
 
@@ -78,15 +78,9 @@ export async function POST(req: Request) {
       ...(image_url ? { imageUrl: image_url } : {})
     }
 
-    const newUser = await createUser(user);
+    console.log('Creating user in MongoDB:', user);
 
-    if(newUser) {
-      await clerkClient.users.updateUserMetadata(id, {
-        publicMetadata: {
-          userId: newUser._id
-        }
-      })
-    }
+    await createUser(user as User)
   }
 
   return new Response('', { status: 200 })
