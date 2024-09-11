@@ -34,21 +34,21 @@ export async function GET() {
       
       
 
-  if (!dbUser) {
-    return new NextResponse(null, {
-      status: 302, // 302 Found - temporary redirect
-      headers: {
-        Location: 'https://calisthenics-pro-lp.vercel.app/api/auth/new-user',
-      },
-    });
-  }
+//   if (!dbUser) {
+//     return new NextResponse(null, {
+//       status: 302, // 302 Found - temporary redirect
+//       headers: {
+//         Location: 'https://calisthenics-pro-lp.vercel.app/api/auth/new-user',
+//       },
+//     });
+//   }
   // Perform your Route Handler's logic with the returned user object
 
-  return new NextResponse(null, {
-    status: 302, // 302 Found - temporary redirect
-    headers: {
-      Location: 'https://calisthenics-pro-lp.vercel.app/dashboard',
-    },
-  });
+//   return new NextResponse(null, {
+//     status: 302, // 302 Found - temporary redirect
+//     headers: {
+//       Location: 'https://calisthenics-pro-lp.vercel.app/dashboard',
+//     },
+//   });
 
 }
