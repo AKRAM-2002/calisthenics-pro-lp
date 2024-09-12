@@ -1,6 +1,7 @@
 
 'use client'; //  Mark this component as a Client Component
 
+import { useEffect } from "react";
 import Features from "./components/Features";
 import Hero from "./components/Hero";
 import Layout from "./components/Layout";
@@ -24,11 +25,11 @@ export default function Home() {
     return null;
   }
 
+  
+
   return (
     <Layout>
       
-        
-        
      
       <Hero />
       <Features />

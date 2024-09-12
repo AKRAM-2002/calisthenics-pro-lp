@@ -39,11 +39,11 @@ export async function GET() {
     // Log dbUser for debugging
     console.log("Database user:", dbUser);
 
-    // Return a success response with user info
-    return new NextResponse(
-      JSON.stringify({ message: 'User exists or was created successfully', user: dbUser }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
+    // Return a success message to the client
+    return new NextResponse(JSON.stringify({ message: 'User exists or was created successfully' }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      });
 
   } catch (error) {
     console.error("Error handling user:", error);

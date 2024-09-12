@@ -48,12 +48,16 @@ export default function DashboardPage() {
  // Simulate fetching user progress data
   const [additionalUserData, setAdditionalUserData] = useState<AdditionalUserData | null>(null);
 
+  
   useEffect(() => {
     if (isLoaded) {
       if (!isSignedIn) {
         router.push("/");
         return;
       }
+      
+      fetchUser(); // Fetch user data if signed in
+      
       
 
       // Simulate fetching additional user data
@@ -87,6 +91,30 @@ export default function DashboardPage() {
       }, 2000);
     }
   }, [isLoaded, isSignedIn, router]);
+
+
+  
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch('/api/auth/new-user');
+      console.log("Fetch User Response:", response);
+      if (response.ok) {
+        setLoading(false); 
+        // Check if we're already on the dashboard page to avoid unnecessary push
+        if (window.location.pathname !== '/dashboard') {
+          console.log("Redirecting to /dashboard...");
+          router.push('/dashboard');
+        }
+      } else {
+        console.log("Redirecting to /signin...");
+        router.push('/signin'); // Redirect to signin on failure
+      }
+    } catch (error) {
+      console.error("Error fetching user:", error);
+      router.push('/signin');
+    }
+  };
 
   if (!isLoaded || loading || !additionalUserData) {
     return <LoadingSpinner />;
