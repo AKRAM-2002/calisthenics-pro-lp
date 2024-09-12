@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function GET() {
+export async function GET(request: Request){
   try {
     const { userId } = auth();
     if (!userId) {
@@ -39,11 +39,21 @@ export async function GET() {
     // Log dbUser for debugging
     console.log("Database user:", dbUser);
 
+    // redirect user to dashboard
+    // Get host from request headers
+    const host = request.headers.get('host');
+    const protocol = host?.includes('localhost') ? 'http' : 'https';
+    const dashboardUrl = `${protocol}://${host}/dashboard`;
+
+    // Redirect user to the dashboard
+    return NextResponse.redirect(dashboardUrl);
+
     // Return a success message to the client
-    return new NextResponse(JSON.stringify({ message: 'User exists or was created successfully' }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' },
-      });
+    // return new NextResponse(JSON.stringify({ message: 'User exists or was created successfully' }), {
+    //     status: 200,
+    //     headers: { 'Content-Type': 'application/json' },
+    //   });
+
 
   } catch (error) {
     console.error("Error handling user:", error);

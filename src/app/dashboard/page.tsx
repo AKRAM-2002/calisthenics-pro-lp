@@ -56,10 +56,6 @@ export default function DashboardPage() {
         return;
       }
       
-      fetchUser(); // Fetch user data if signed in
-      
-      
-
       // Simulate fetching additional user data
       setTimeout(() => {
         const fetchedUserData = {
@@ -93,28 +89,25 @@ export default function DashboardPage() {
   }, [isLoaded, isSignedIn, router]);
 
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/api/auth/new-user');
+        if (!response.ok) {
+          throw new Error('Error fetching data');
+        }
+        const data = await response.json();
+        console.log(data);  // This should log the response from the API
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
   
 
-  const fetchUser = async () => {
-    try {
-      const response = await fetch('/api/auth/new-user');
-      console.log("Fetch User Response:", response);
-      if (response.ok) {
-        setLoading(false); 
-        // Check if we're already on the dashboard page to avoid unnecessary push
-        if (window.location.pathname !== '/dashboard') {
-          console.log("Redirecting to /dashboard...");
-          router.push('/dashboard');
-        }
-      } else {
-        console.log("Redirecting to /signin...");
-        router.push('/signin'); // Redirect to signin on failure
-      }
-    } catch (error) {
-      console.error("Error fetching user:", error);
-      router.push('/signin');
-    }
-  };
+
 
   if (!isLoaded || loading || !additionalUserData) {
     return <LoadingSpinner />;
