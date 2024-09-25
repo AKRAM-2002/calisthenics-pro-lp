@@ -9,25 +9,43 @@ Calisthenics Pro is a skill tracking app that helps fitness enthusiasts monitor 
 ![App Screenshot](/public/image.png)
 
 
-## Features
+## Core Features (MVP)
+1. User Registration and Authentication
 
-- User registration and authentication.
-- Skill tracking and progress visualization.
-- AI-driven personalized tips and workout plans.
-- Social networking with friends and a social feed.
-- Workout logging and activity tracking.
-- Dark mode for a better user experience.
+- Secure sign-up and login with email/password using JWT tokens.
+2. Dashboard
+
+- Displays an overview of user progress, current skill levels, and recent activities.
+3. Skill Tracking
+
+- Users can add/update skills (pull-ups, push-ups, handstands) and track their progress with charts.
+4. Workout Logging
+
+- Log daily workouts with details like date, type, and duration.
+5. AI Personal Trainer
+
+- Receive AI-generated workout recommendations and tips for improvement.
+6. Social Networking
+
+- Follow friends, view their progress, and interact with them via a social feed.
 
 
 ## Technology stack
 
-- Front-end: React, NextJs
-- Back-end: Typescript
-- Database: Prisma / MongoDB
-- AI Integration: Openai Assistant/ Chatgpt
+- Front-end:  Next.js (React) with TypeScript
+- Back-end: Next.js API Routes 
+- Database: MongoDB (via Prisma ORM)
+- AI Integration: OpenAI's GPT models for generating personalized workout plans and improvement tips
 - Version Control: GitHub
 - Deployment: Vercel
 - Testing: Jest (front-end), Postman (back-end)
+
+## AI Integration
+The AI component leverages OpenAI's GPT models to provide:
+
+- Personalized workout tips and advice based on user data.
+- Adaptive workout plans that evolve as the user progresses.
+- Real-time feedback on skill tracking and areas for improvement.
 
 ## Future Enhancements
 
@@ -35,6 +53,9 @@ Calisthenics Pro is a skill tracking app that helps fitness enthusiasts monitor 
 - Expanded social networking features like a leaderboard and community challenges.
 - More detailed progress tracking with body metrics like weight, body fat %, and BMI.
 - Invite friends and share achievements.
+- Mobile App: Develop a mobile version of Calisthenics Pro with enhanced features.
+- Advanced AI Models: Incorporate more complex machine learning models to offer better progress predictions and feedback.
+- Gym Buddy Finder: Connect users based on location and fitness goals to encourage joint workouts.
 
 ## Installation
 
@@ -48,8 +69,16 @@ git clone https://github.com/AKRAM-2002/calisthenics-pro.git
   npm install 
 ```
 
+### Set up environment variables:
 
-## Getting Started
+```bash
+MONGODB_URI=<your-mongodb-uri>
+NEXTAUTH_SECRET=<your-nextauth-secret>
+OPENAI_API_KEY=<your-openai-api-key>
+```
+
+
+### Getting Started
 
 First, run the development server:
 
