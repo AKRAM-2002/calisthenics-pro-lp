@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Calendar, ChevronLeft, ChevronRight, Info } from 'lucide-react';
-
+import { Calendar, ChevronLeft, ChevronRight, Info, X } from 'lucide-react';
+import { AIAssistantModal } from '../components/AIAssistantModal'
 const WorkoutPlan = () => {
   const [currentWeek, setCurrentWeek] = useState(0);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const workoutSchedule = [
     { day: 'Monday', workout: 'Upper Body', exercises: ['Bench Press', 'Pull-ups', 'Shoulder Press'] },
@@ -20,6 +21,14 @@ const WorkoutPlan = () => {
 
   const handleNextWeek = () => {
     setCurrentWeek((prev) => prev + 1);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -58,10 +67,15 @@ const WorkoutPlan = () => {
       </div>
 
       <div className="mt-8 flex justify-end">
-        <button className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors">
+        <button
+          onClick={openModal}
+          className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition-colors"
+        >
           Customize Plan
         </button>
       </div>
+
+      <AIAssistantModal isOpen={isModalOpen} onClose={closeModal}/>
     </div>
   );
 };

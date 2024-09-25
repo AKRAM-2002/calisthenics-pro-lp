@@ -1,4 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# Calisthenics Pro
+
+Calisthenics Pro is a skill tracking app that helps fitness enthusiasts monitor their calisthenics progress, set personalized goals, and receive AI-driven workout recommendations. The app provides users with the tools to log workouts, track specific bodyweight skills, and visualize their progress, offering a structured way to master calisthenics.
+
+
+
+
+![App Screenshot](/public/image.png)
+
+
+## Features
+
+- User registration and authentication.
+- Skill tracking and progress visualization.
+- AI-driven personalized tips and workout plans.
+- Social networking with friends and a social feed.
+- Workout logging and activity tracking.
+- Dark mode for a better user experience.
+
+
+## Technology stack
+
+- Front-end: React, NextJs
+- Back-end: Typescript
+- Database: Prisma / MongoDB
+- AI Integration: Openai Assistant/ Chatgpt
+- Version Control: GitHub
+- Deployment: Vercel
+- Testing: Jest (front-end), Postman (back-end)
+
+## Future Enhancements
+
+- Advanced AI-driven workout plans and adaptive feedback.
+- Expanded social networking features like a leaderboard and community challenges.
+- More detailed progress tracking with body metrics like weight, body fat %, and BMI.
+- Invite friends and share achievements.
+
+## Installation
+
+Install my-project with npm
+```
+git clone https://github.com/AKRAM-2002/calisthenics-pro.git
+```
+
+```bash
+  cd calisthenics-pro
+  npm install 
+```
+
 
 ## Getting Started
 
